@@ -1,0 +1,42 @@
+﻿@model List<JSON_PERSON.Models.PersonModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Index</h2>
+
+@* ----------- View all ----------- *@
+<h1>View All</h1>
+@foreach (var item in Model)
+{
+    <p>
+        ID: @item.Id<br />
+        Name: @item.FirstName<br />
+        Surname: @item.LastName<br />
+       
+    </p>
+   
+}
+
+@* ----------- Add new Person ----------- *@
+<h1>Add or Update Person</h1>
+@using (Html.BeginForm("Index", "Person", FormMethod.Post))
+{
+    JSON_PERSON.Models.PersonModel person = new JSON_PERSON.Models.PersonModel();
+    <label asp-for="@person.Id">ID</label>
+    <br />
+    <input type="text" asp-for="@person.Id" name="Id" />
+    <br />
+    <br />
+    <label asp-for="@person.FirstName">Name</label>
+    <br />
+    <input type="text" asp-for="@person.FirstName" name="FirstName" />
+    <br />
+    <br />
+    <label asp-for="@person.LastName">Surname</label>
+    <br />
+    <input type="text" asp-for="@person.LastName" name="LastName" />
+    <br />
+    
+    <button type="submit">Add/Update</button>
+}
+
