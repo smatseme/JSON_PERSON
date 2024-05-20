@@ -13,6 +13,11 @@
             string root = _env.WebRootPath;
             var path = Path.Combine(root, location, fileName);
 
+            if (!File.Exists(path) || new FileInfo(path).Length == 0)
+            {
+                throw new Exception("File is empty or does not exist.");
+            }
+
             using (StreamReader streamReader = new StreamReader(path))
             {
                 return streamReader.ReadToEnd();
