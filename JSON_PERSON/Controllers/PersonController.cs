@@ -15,9 +15,7 @@ namespace JSON_PERSON.Controllers
         }
 
         public IActionResult Index()
-        {
-            //List<PersonModel> people = JsonConvert.DeserializeObject<List<PersonModel>>(_jsonReadWriteService.Read("people.json", "data"));
-            //return View(people);
+        {           
             try
             {
                 List<PersonModel> people = JsonConvert.DeserializeObject<List<PersonModel>>(_jsonReadWriteService.Read("people.json", "data"));
@@ -33,6 +31,12 @@ namespace JSON_PERSON.Controllers
         [HttpPost]
         public IActionResult Index(PersonModel personModel)
         {
+            if (!ModelState.IsValid)
+            {
+                // If the model is invalid, return the view with the model to display validation errors.
+                return View(new List<PersonModel>());
+            }
+
             try
             {
                 List<PersonModel> people = JsonConvert.DeserializeObject<List<PersonModel>>(_jsonReadWriteService.Read("people.json", "data"));
@@ -40,7 +44,7 @@ namespace JSON_PERSON.Controllers
                 PersonModel person = people.FirstOrDefault(x => x.Id == personModel.Id);
 
                 if (person == null)
-                {
+                {   
                     people.Add(personModel);
                 }
                 else

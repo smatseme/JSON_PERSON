@@ -25,16 +25,19 @@
     <label asp-for="@person.Id">ID</label>
     <br />
     <input type="text" asp-for="@person.Id" name="Id" />
+    <span asp-validation-for="@person.Id" class="text-danger"></span>
     <br />
     <br />
     <label asp-for="@person.FirstName">Name</label>
     <br />
     <input type="text" asp-for="@person.FirstName" name="FirstName" />
+    <span asp-validation-for="@person.FirstName" class="text-danger"></span>
     <br />
     <br />
     <label asp-for="@person.LastName">Surname</label>
     <br />
     <input type="text" asp-for="@person.LastName" name="LastName" />
+    <span asp-validation-for="@person.LastName" class="text-danger"></span>
     <br />
     
     <button type="submit">Add/Update</button>
